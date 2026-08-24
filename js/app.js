@@ -1,14 +1,14 @@
-﻿// ============ app.js 路 搴旂敤鍚姩鍏ュ彛 ============
-// 鍏叡宸ュ叿鍑芥暟 + 鍚勬ā鍧楀垵濮嬪寲 + bootApp 鍏ュ彛
+// ============ app.js · 应用启动入口 ============
+// 公共工具函数 + 各模块初始化 + bootApp 入口
 
-// 杞箟 HTML 鐗规畩瀛楃锛堝叏灞€鍑芥暟锛屼緵 partial 鍐呰仈鑴氭湰浣跨敤锛?
+// 转义 HTML 特殊字符（全局函数，供 partial 内联脚本使用）
 function escapeHtml(str) {
     return String(str == null ? '' : str)
         .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-// 鍔犺浇 HTML partial锛屾敞鍏ュ埌鎸囧畾瀹瑰櫒锛屽苟鎵ц鍏朵腑鐨勫唴鑱?<script>
+// 加载 HTML partial，注入到指定容器，并执行其中的内联 <script>
 async function fetchPartial(url, mountId) {
     const mount = document.getElementById(mountId);
     if (!mount) return;
@@ -16,7 +16,7 @@ async function fetchPartial(url, mountId) {
         const res = await fetch(url);
         if (!res.ok) throw new Error('HTTP ' + res.status);
         mount.innerHTML = await res.text();
-        // 娴忚鍣ㄤ笉浼氭墽琛?innerHTML 娉ㄥ叆鐨?<script>锛岄渶瑕侀噸鏂板垱寤?
+        // 浏览器不会执行 innerHTML 注入的 <script>，需要重新创建
         mount.querySelectorAll('script').forEach(old => {
             const s = document.createElement('script');
             if (old.src) s.src = old.src;
@@ -24,11 +24,11 @@ async function fetchPartial(url, mountId) {
             old.parentNode.replaceChild(s, old);
         });
     } catch (e) {
-        console.error('[partial] 鍔犺浇澶辫触:', url, e);
+        console.error('[partial] 加载失败:', url, e);
     }
 }
 
-// 灏忔椂绾х増鏈彿 鈥?缁曡繃娴忚鍣ㄧ紦瀛橈紝姣忓皬鏃惰嚜鍔ㄨ幏鍙栨渶鏂版暟鎹?
+// 小时级版本号 — 绕过浏览器缓存，每小时自动获取最新数据
 function _hourVersion() {
     const d = new Date();
     return d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') +
@@ -37,7 +37,7 @@ function _hourVersion() {
 function _jsonUrl(path) {
     return path + '?v=' + _hourVersion();
 }
-// 鍏ㄥ眬鏁版嵁璁块棶灞?鈥?鍚勬ā鍧楅€氳繃 DataStore 鍔犺浇 JSON锛孶RL 鑷姩甯︾増鏈彿
+// 全局数据访问层 — 各模块通过 DataStore 加载 JSON，URL 自动带版本号
 window.DataStore = {
     announcement: function () { return fetch(_jsonUrl('data/announcement.json')).then(function (r) { return r.json(); }); },
     hero: function () { return fetch(_jsonUrl('data/hero.json')).then(function (r) { return r.json(); }); },
@@ -51,7 +51,7 @@ window.DataStore = {
 
 (function () {
 
-    // 婊氬姩娓愬叆鍔ㄧ敾锛圛ntersectionObserver锛?
+    // 滚动渐入动画（IntersectionObserver）
     function initReveal() {
         const reveals = document.querySelectorAll('.reveal');
         if (!reveals.length) return;
@@ -70,11 +70,11 @@ window.DataStore = {
         reveals.forEach(el => observer.observe(el));
     }
 
-    // 鍥炲埌椤堕儴鎸夐挳
+    // 回到顶部按钮
     function initScrollTop() {
         const btn = document.createElement('button');
         btn.className = 'scroll-top';
-        btn.setAttribute('aria-label', '鍥炲埌椤堕儴');
+        btn.setAttribute('aria-label', '回到顶部');
         btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>';
         document.body.appendChild(btn);
         const toggle = () => {
@@ -87,10 +87,10 @@ window.DataStore = {
         toggle();
     }
 
-    // 鏍囪褰撳墠椤甸潰瀵瑰簲鐨勫鑸」楂樹寒锛圥C + 绉诲姩绔級
+    // 标记当前页面对应的导航项高亮（PC + 移动端）
     function markActiveNav() {
         const path = window.location.pathname;
-        // 鏍规嵁 URL 璺緞鍒ゆ柇鍝釜瀵艰埅椤瑰簲璇ラ珮浜?
+        // 根据 URL 路径判断哪个导航项应该高亮
         let activeHref = null;
         if (path.indexOf('/shop/') !== -1 || path.indexOf('/product-category/') !== -1 || path.indexOf('/product/') !== -1) {
             activeHref = '/shop/';
@@ -105,14 +105,14 @@ window.DataStore = {
             const href = a.getAttribute && a.getAttribute('href');
             let isActive = false;
             if (activeHref === '/shop/') {
-                // Products 鑿滃崟锛氬湪 /shop/ 鎴栦换鎰?/product-category/*/ 椤甸潰楂樹寒
+                // Products 菜单：在 /shop/ 或任意 /product-category/*/ 页面高亮
                 isActive = href === '/shop/' || (href && href.indexOf('/product-category/') === 0);
             } else {
                 isActive = href === activeHref || (href && href.indexOf(activeHref + '#') === 0);
             }
             if (a.tagName === 'A') a.classList.toggle('active', isActive);
         });
-        // 绉诲姩绔細濡傛灉瀛愯彍鍗曚腑鏈夊尮閰嶅綋鍓嶉〉闈㈢殑閾炬帴锛屾爣璁扮埗绾у睍寮€鎸夐挳
+        // 移动端：如果子菜单中有匹配当前页面的链接，标记父级展开按钮
         document.querySelectorAll('.mobile-nav .m-has-sub').forEach(wrap => {
             const subLinks = wrap.querySelectorAll('.m-submenu a');
             const match = Array.from(subLinks).some(a => {
@@ -125,7 +125,7 @@ window.DataStore = {
         });
     }
 
-    // 椤甸潰鍚姩锛氬姞杞?partial 鈫?娓叉煋浜у搧锛堝瀛樺湪锛夆啋 鍒濆鍖栨墍鏈夋ā鍧?
+    // 页面启动：加载 partial → 渲染产品（如存在）→ 初始化所有模块
     async function bootApp(partials) {
         await Promise.all(partials.map(p => fetchPartial(p.url, p.mountId)));
         if (typeof renderProducts === 'function') {
@@ -140,6 +140,6 @@ window.DataStore = {
         markActiveNav();
     }
 
-    // 鍙毚闇插惎鍔ㄥ叆鍙?
+    // 只暴露启动入口
     window.bootApp = bootApp;
 })();

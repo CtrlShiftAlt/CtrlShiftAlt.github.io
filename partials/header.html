@@ -1,4 +1,4 @@
-﻿<!-- 鍏憡鏍?-->
+<!-- 公告栏 -->
 <div class="announce-bar" id="announce-bar">
     <div class="container announce-inner">
         <div class="announce-scroll">
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<!-- 涓诲鑸?-->
+<!-- 主导航 -->
 <header class="header" id="site-header">
     <div class="container nav">
         <a href="/" class="logo" aria-label="Fish Keeper home">
@@ -47,7 +47,7 @@
     </div>
 </header>
 
-<!-- 绉诲姩绔娊灞夎彍鍗?-->
+<!-- 移动端抽屉菜单 -->
 <aside class="mobile-menu">
     <div class="mobile-menu-head">
         <a href="/" class="logo" aria-label="Fish Keeper home">
@@ -81,7 +81,7 @@
         <a href="/contact/">Contact <svg class="m-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
     </nav>
     <div class="mobile-menu-foot">
-        <div class="m-contact">Support 路 400-888-0000</div>
+        <div class="m-contact">Support · 400-888-0000</div>
         <div class="m-socials">
             <a href="#" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="" width="18" height="18"></a>
             <a href="#" aria-label="Instagram"><img src="images/icon-instagram.svg" alt="" width="18" height="18"></a>
@@ -93,7 +93,7 @@
 <div class="menu-overlay"></div>
 
 <script>
-// ============ Header锛氬叕鍛婃爮 + 婊氬姩鐘舵€?============
+// ============ Header：公告栏 + 滚动状态 ============
 function initHeaderScroll() {
     const header = document.getElementById('site-header');
     const announce = document.getElementById('announce-bar');
@@ -109,7 +109,7 @@ function initHeaderScroll() {
     }, { passive: true });
     onScroll();
 
-    // 鍏憡鏍忓叧闂寜閽?
+    // 公告栏关闭按钮
     if (announce) {
         const closeBtn = announce.querySelector('.announce-close');
         if (closeBtn) {
@@ -118,12 +118,12 @@ function initHeaderScroll() {
                 document.body.classList.remove('has-announce');
             });
         }
-        // 缁?body 鍔?class锛岀敤浜?header 鍋忕Щ璁＄畻
+        // 给 body 加 class，用于 header 偏移计算
         document.body.classList.add('has-announce');
     }
 }
 
-// ============ 绉诲姩绔彍鍗曪細鎶藉眽 + 鎵嬮鐞?============
+// ============ 移动端菜单：抽屉 + 手风琴 ============
 function initMobileMenu() {
     const toggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.mobile-menu');
@@ -156,19 +156,19 @@ function initMobileMenu() {
     });
 }
 
-// ============ 浠?JSON 鍔犺浇 header 鏁版嵁 ============
+// ============ 从 JSON 加载 header 数据 ============
 (async function loadHeaderData() {
     try {
         const [announceData, catData] = await Promise.all([
             window.DataStore.announcement(),
             window.DataStore.categories()
         ]);
-        // 鍏憡鏍忔枃瀛楋紙浠呭綋鏂囧瓧瓒呭嚭瀹瑰櫒鏃跺惎鐢ㄨ窇椹伅锛?
+        // 公告栏文字（仅当文字超出容器时启用跑马灯）
         const announceText = document.getElementById('announce-text');
         const announceCopy = document.querySelector('.announce-text-copy');
         if (announceText) announceText.textContent = announceData.text;
         if (announceCopy) announceCopy.textContent = announceData.text;
-        // 鏅鸿兘璺戦┈鐏細浠呭綋鏂囧瓧瀹藉害澶т簬瀹瑰櫒鏃跺惎鐢紝閫熷害绾?60px/s
+        // 智能跑马灯：仅当文字宽度大于容器时启用，速度约 60px/s
         requestAnimationFrame(() => {
             const scrollEl = document.querySelector('.announce-scroll');
             const textEl = document.getElementById('announce-text');
@@ -186,7 +186,7 @@ function initMobileMenu() {
                 }
             }
         });
-        // Products 瀛愯彍鍗曪紙PC + 绉诲姩绔級鈥?鍙樉绀轰竴绾у垎绫伙紝鐖跺垎绫婚摼鎺ュ睍绀烘墍鏈夊瓙鍒嗙被
+        // Products 子菜单（PC + 移动端）— 只显示一级分类，父分类链接展示所有子分类
         const topCats = catData.items.filter(c => !c.parent);
         const catLinks = topCats.map(cat =>
             '<a href="/product-category/' + cat.slug + '/">' + cat.name + '</a>'
