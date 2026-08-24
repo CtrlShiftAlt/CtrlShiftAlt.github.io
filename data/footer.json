@@ -85,15 +85,15 @@
       "links": [
         {
           "text": "Contact Us",
-          "href": "/contact.html"
+          "href": "/contact/"
         },
         {
           "text": "FAQ",
-          "href": "/contact.html#faq"
+          "href": "/contact/#faq"
         },
         {
           "text": "Store Locator",
-          "href": "/contact.html#contact"
+          "href": "/contact/#contact"
         }
       ]
     },
@@ -102,36 +102,36 @@
       "links": [
         {
           "text": "About Us",
-          "href": "/about.html"
+          "href": "/about/"
         },
         {
           "text": "Our Story",
-          "href": "/about.html#story"
+          "href": "/about/#story"
         },
         {
           "text": "Our Values",
-          "href": "/about.html#values"
+          "href": "/about/#values"
         },
         {
           "text": "Our Journey",
-          "href": "/about.html#journey"
+          "href": "/about/#journey"
         },
         {
           "text": "Our Voice",
-          "href": "/about.html#creed"
+          "href": "/about/#creed"
         },
         {
           "text": "Stats",
-          "href": "/about.html#stats"
+          "href": "/about/#stats"
         },
         {
           "text": "Join Us",
-          "href": "/about.html#cta"
+          "href": "/about/#cta"
         }
       ]
     }
   ],
-  "copyright": "© 2026 Fish Keeper · Aquarium Lifestyle Store",
+  "copyright": "漏 2026 Fish Keeper 路 Aquarium Lifestyle Store",
   "payments": [
     {
       "name": "PayPal",
