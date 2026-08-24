@@ -11,7 +11,7 @@
       "parent": null,
       "subtitle": "Glass · Gravel · Maintenance",
       "description": "Everything for keeping your tank spotless — magnetic cleaners, gravel vacuums and more",
-      "image": "images/cat-cleaners.jpg",
+      "image": "images/cat-cleaners.webp",
       "cta": "Shop Cleaners",
       "large": true
     },
@@ -21,7 +21,7 @@
       "parent": "cleaners",
       "subtitle": "Scrubbers · Brushes · Scrapers",
       "description": "Effortless algae removal with strong magnetic cleaners that reach every corner",
-      "image": "images/cat-magnetic-glass-cleaner.jpg",
+      "image": "images/cat-magnetic-glass-cleaner.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -31,7 +31,7 @@
       "parent": "cleaners",
       "subtitle": "Siphons · Cleaners",
       "description": "Quick water changes and substrate maintenance with powerful vacuum siphons",
-      "image": "images/cat-gravel-cleaner-vacuum.jpg",
+      "image": "images/cat-gravel-cleaner-vacuum.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -41,7 +41,7 @@
       "parent": null,
       "subtitle": "Canister · Hang-on · Sponge",
       "description": "Crystal-clear water with high-performance filtration systems",
-      "image": "images/cat-filters.jpg",
+      "image": "images/cat-filters.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -51,7 +51,7 @@
       "parent": null,
       "subtitle": "Pumps · Stones · Tubing",
       "description": "Reliable oxygenation with quiet, energy-efficient air pumps",
-      "image": "images/cat-air-pumps.jpg",
+      "image": "images/cat-air-pumps.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -61,7 +61,7 @@
       "parent": null,
       "subtitle": "Submersible · External",
       "description": "Versatile water pumps for filtration, fountains and water circulation",
-      "image": "images/cat-water-pumps.jpg",
+      "image": "images/cat-water-pumps.webp",
       "cta": "Shop Now",
       "large": true
     },
@@ -71,7 +71,7 @@
       "parent": null,
       "subtitle": "Powerheads · Wavemakers",
       "description": "Natural water flow and circulation for healthy coral and fish",
-      "image": "images/cat-wave-maker.jpg",
+      "image": "images/cat-wave-maker.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -81,7 +81,7 @@
       "parent": null,
       "subtitle": "LED · T5 · Planted",
       "description": "Full-spectrum lighting that brings out vibrant colors and plant growth",
-      "image": "images/cat-lights.jpg",
+      "image": "images/cat-lights.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -91,7 +91,7 @@
       "parent": null,
       "subtitle": "Automatic · Vacation",
       "description": "Never miss a feeding with programmable automatic fish feeders",
-      "image": "images/cat-fish-feeder.jpg",
+      "image": "images/cat-fish-feeder.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -101,7 +101,7 @@
       "parent": null,
       "subtitle": "Chillers · Cooling Fans",
       "description": "Keep water temperature stable even in warm climates with precision chillers",
-      "image": "images/cat-aquarium-chiller.jpg",
+      "image": "images/cat-aquarium-chiller.webp",
       "cta": "Shop Now",
       "large": true
     },
@@ -111,7 +111,7 @@
       "parent": null,
       "subtitle": "Submersible · Inline · Digital",
       "description": "Accurate, reliable heating to maintain optimal tank temperature",
-      "image": "images/cat-heaters.jpg",
+      "image": "images/cat-heaters.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -121,7 +121,7 @@
       "parent": null,
       "subtitle": "Glass · Acrylic · Rimless",
       "description": "Crystal-clear aquariums in every size, from nano to showpiece",
-      "image": "images/cat-fish-tank.jpg",
+      "image": "images/cat-fish-tank.webp",
       "cta": "Shop Now",
       "large": false
     },
@@ -131,7 +131,7 @@
       "parent": null,
       "subtitle": "Wood · Metal · Cabinets",
       "description": "Sturdy, stylish stands that support your tank and hide equipment",
-      "image": "images/cat-aquarium-stand.jpg",
+      "image": "images/cat-aquarium-stand.webp",
       "cta": "Shop Now",
       "large": false
     }

@@ -2,7 +2,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Magnetic Glass Cleaner Pro",
-    "image": "images/product-magnetic-pro.jpg",
+    "image": "images/product-magnetic-pro.webp",
     "alt": "Magnetic Glass Cleaner Pro",
     "tag": "hot",
     "tagText": "Hot",
@@ -19,7 +19,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Magnetic Glass Cleaner Mini",
-    "image": "images/product-magnetic-mini.jpg",
+    "image": "images/product-magnetic-mini.webp",
     "alt": "Magnetic Glass Cleaner Mini",
     "tag": "",
     "tagText": "",
@@ -36,7 +36,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Floating Magnetic Cleaner with Scraper",
-    "image": "images/product-magnetic-floating.jpg",
+    "image": "images/product-magnetic-floating.webp",
     "alt": "Floating Magnetic Cleaner with Scraper",
     "tag": "new",
     "tagText": "New",
@@ -53,7 +53,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Gravel Cleaner Vacuum Siphon Kit",
-    "image": "images/product-gravel-siphon.jpg",
+    "image": "images/product-gravel-siphon.webp",
     "alt": "Gravel Cleaner Vacuum Siphon Kit",
     "tag": "new",
     "tagText": "New",
@@ -70,7 +70,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Extra Long Gravel Cleaner 120cm",
-    "image": "images/product-gravel-long.jpg",
+    "image": "images/product-gravel-long.webp",
     "alt": "Extra Long Gravel Cleaner 120cm",
     "tag": "",
     "tagText": "",
@@ -87,7 +87,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Battery-Powered Gravel Cleaner",
-    "image": "images/product-gravel-battery.jpg",
+    "image": "images/product-gravel-battery.webp",
     "alt": "Battery-Powered Gravel Cleaner",
     "tag": "hot",
     "tagText": "Hot",
@@ -104,7 +104,7 @@
   {
     "brand": "Fish Keeper",
     "name": "FX6 High Performance Canister Filter",
-    "image": "images/product-filter-fx6.jpg",
+    "image": "images/product-filter-fx6.webp",
     "alt": "FX6 Canister Filter",
     "tag": "hot",
     "tagText": "Hot",
@@ -121,7 +121,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Hang-On Back Filter 500L/H",
-    "image": "images/product-filter-hob.jpg",
+    "image": "images/product-filter-hob.webp",
     "alt": "Hang-On Back Filter",
     "tag": "",
     "tagText": "",
@@ -138,7 +138,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Internal Sponge Filter",
-    "image": "images/product-filter-sponge.jpg",
+    "image": "images/product-filter-sponge.webp",
     "alt": "Internal Sponge Filter",
     "tag": "new",
     "tagText": "New",
@@ -155,7 +155,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Canister Filter 2000L/H with UV",
-    "image": "images/product-filter-uv.jpg",
+    "image": "images/product-filter-uv.webp",
     "alt": "Canister Filter with UV Sterilizer",
     "tag": "",
     "tagText": "",
@@ -172,7 +172,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Undergravel Filter Plate Set",
-    "image": "images/product-filter-undergravel.jpg",
+    "image": "images/product-filter-undergravel.webp",
     "alt": "Undergravel Filter Plate Set",
     "tag": "",
     "tagText": "",
@@ -189,7 +189,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Quiet Air Pump 5W Dual Outlet",
-    "image": "images/product-air-quiet.jpg",
+    "image": "images/product-air-quiet.webp",
     "alt": "Quiet Dual Outlet Air Pump",
     "tag": "",
     "tagText": "",
@@ -206,7 +206,7 @@
   {
     "brand": "Fish Keeper",
     "name": "High Power Air Pump 10W",
-    "image": "images/product-air-power.jpg",
+    "image": "images/product-air-power.webp",
     "alt": "High Power Air Pump",
     "tag": "hot",
     "tagText": "Hot",
@@ -223,7 +223,7 @@
   {
     "brand": "Fish Keeper",
     "name": "USB Rechargeable Air Pump",
-    "image": "images/product-air-usb.jpg",
+    "image": "images/product-air-usb.webp",
     "alt": "USB Rechargeable Air Pump",
     "tag": "new",
     "tagText": "New",
@@ -240,7 +240,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Submersible Water Pump 2000L/H",
-    "image": "images/product-water-2000.jpg",
+    "image": "images/product-water-2000.webp",
     "alt": "Submersible Water Pump 2000L/H",
     "tag": "new",
     "tagText": "New",
@@ -257,7 +257,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Submersible Water Pump 3000L/H",
-    "image": "images/product-water-3000.jpg",
+    "image": "images/product-water-3000.webp",
     "alt": "Submersible Water Pump 3000L/H",
     "tag": "",
     "tagText": "",
@@ -274,7 +274,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Return Pump 5000L/H",
-    "image": "images/product-water-5000.jpg",
+    "image": "images/product-water-5000.webp",
     "alt": "Return Pump 5000L/H",
     "tag": "hot",
     "tagText": "Hot",
@@ -291,7 +291,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Mini Water Pump 500L/H",
-    "image": "images/product-water-mini.jpg",
+    "image": "images/product-water-mini.webp",
     "alt": "Mini Water Pump 500L/H",
     "tag": "",
     "tagText": "",
@@ -308,7 +308,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Aquarium Wave Maker 3000L/H",
-    "image": "images/product-wave-3000.jpg",
+    "image": "images/product-wave-3000.webp",
     "alt": "Aquarium Wave Maker 3000L/H",
     "tag": "",
     "tagText": "",
@@ -325,7 +325,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Dual Wave Maker 6000L/H",
-    "image": "images/product-wave-dual.jpg",
+    "image": "images/product-wave-dual.webp",
     "alt": "Dual Wave Maker 6000L/H",
     "tag": "hot",
     "tagText": "Hot",
@@ -342,7 +342,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Nano Wave Maker 1500L/H",
-    "image": "images/product-wave-nano.jpg",
+    "image": "images/product-wave-nano.webp",
     "alt": "Nano Wave Maker 1500L/H",
     "tag": "new",
     "tagText": "New",
@@ -359,7 +359,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Full Spectrum LED Aquarium Light 60cm",
-    "image": "images/product-light-60.jpg",
+    "image": "images/product-light-60.webp",
     "alt": "Full Spectrum LED Light 60cm",
     "tag": "hot",
     "tagText": "Hot",
@@ -376,7 +376,7 @@
   {
     "brand": "Fish Keeper",
     "name": "LED Aquarium Light 90cm with Timer",
-    "image": "images/product-light-90.jpg",
+    "image": "images/product-light-90.webp",
     "alt": "LED Light 90cm with Timer",
     "tag": "",
     "tagText": "",
@@ -393,7 +393,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Clip-On LED Light 30cm",
-    "image": "images/product-light-clip.jpg",
+    "image": "images/product-light-clip.webp",
     "alt": "Clip-On LED Light 30cm",
     "tag": "new",
     "tagText": "New",
@@ -410,7 +410,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Planted Tank LED Light 120cm",
-    "image": "images/product-light-120.jpg",
+    "image": "images/product-light-120.webp",
     "alt": "Planted Tank LED Light 120cm",
     "tag": "",
     "tagText": "",
@@ -427,7 +427,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Reef LED Light 80W",
-    "image": "images/product-light-reef.jpg",
+    "image": "images/product-light-reef.webp",
     "alt": "Reef LED Light 80W",
     "tag": "hot",
     "tagText": "Hot",
@@ -444,7 +444,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Automatic Fish Feeder with Timer",
-    "image": "images/product-feeder-timer.jpg",
+    "image": "images/product-feeder-timer.webp",
     "alt": "Automatic Fish Feeder with Timer",
     "tag": "new",
     "tagText": "New",
@@ -461,7 +461,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Large Capacity Auto Feeder 200ml",
-    "image": "images/product-feeder-large.jpg",
+    "image": "images/product-feeder-large.webp",
     "alt": "Large Capacity Auto Feeder",
     "tag": "",
     "tagText": "",
@@ -478,7 +478,7 @@
   {
     "brand": "Fish Keeper",
     "name": "WiFi Smart Fish Feeder",
-    "image": "images/product-feeder-wifi.jpg",
+    "image": "images/product-feeder-wifi.webp",
     "alt": "WiFi Smart Fish Feeder",
     "tag": "hot",
     "tagText": "Hot",
@@ -495,7 +495,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Aquarium Chiller 1/10 HP",
-    "image": "images/product-chiller-110.jpg",
+    "image": "images/product-chiller-110.webp",
     "alt": "Aquarium Chiller 1/10 HP",
     "tag": "",
     "tagText": "",
@@ -512,7 +512,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Aquarium Chiller 1/4 HP",
-    "image": "images/product-chiller-14.jpg",
+    "image": "images/product-chiller-14.webp",
     "alt": "Aquarium Chiller 1/4 HP",
     "tag": "hot",
     "tagText": "Hot",
@@ -529,7 +529,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Thermoelectric Cooler 30L",
-    "image": "images/product-chiller-thermo.jpg",
+    "image": "images/product-chiller-thermo.webp",
     "alt": "Thermoelectric Cooler 30L",
     "tag": "new",
     "tagText": "New",
@@ -546,7 +546,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Digital Thermostat Heater 300W",
-    "image": "images/product-heater-300.jpg",
+    "image": "images/product-heater-300.webp",
     "alt": "Digital Thermostat Heater 300W",
     "tag": "hot",
     "tagText": "Hot",
@@ -563,7 +563,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Submersible Heater 100W",
-    "image": "images/product-heater-100.jpg",
+    "image": "images/product-heater-100.webp",
     "alt": "Submersible Heater 100W",
     "tag": "",
     "tagText": "",
@@ -580,7 +580,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Titanium Heater 500W",
-    "image": "images/product-heater-titanium.jpg",
+    "image": "images/product-heater-titanium.webp",
     "alt": "Titanium Heater 500W",
     "tag": "new",
     "tagText": "New",
@@ -597,7 +597,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Inline Heater 200W",
-    "image": "images/product-heater-inline.jpg",
+    "image": "images/product-heater-inline.webp",
     "alt": "Inline Heater 200W",
     "tag": "",
     "tagText": "",
@@ -614,7 +614,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Smart Aquarium Pro 80cm",
-    "image": "images/product-smart-pro-80.jpg",
+    "image": "images/product-smart-pro-80.webp",
     "alt": "Smart Aquarium Pro 80cm",
     "tag": "hot",
     "tagText": "Hot",
@@ -631,7 +631,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Smart Rimless Tank 60cm",
-    "image": "images/product-smart-rimless-60.jpg",
+    "image": "images/product-smart-rimless-60.webp",
     "alt": "Smart Rimless Tank 60cm",
     "tag": "new",
     "tagText": "New",
@@ -648,7 +648,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Smart Nano Tank 30cm",
-    "image": "images/product-smart-nano-30.jpg",
+    "image": "images/product-smart-nano-30.webp",
     "alt": "Smart Nano Tank 30cm",
     "tag": null,
     "tagText": null,
@@ -665,7 +665,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Smart Tall Tank 50cm",
-    "image": "images/product-smart-tall-50.jpg",
+    "image": "images/product-smart-tall-50.webp",
     "alt": "Smart Tall Tank 50cm",
     "tag": null,
     "tagText": null,
@@ -682,7 +682,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Smart Shallow Tank 90cm",
-    "image": "images/product-smart-shallow-90.jpg",
+    "image": "images/product-smart-shallow-90.webp",
     "alt": "Smart Shallow Tank 90cm",
     "tag": null,
     "tagText": null,
@@ -699,7 +699,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Wooden Aquarium Stand Cabinet 120cm",
-    "image": "images/product-stand-wood.jpg",
+    "image": "images/product-stand-wood.webp",
     "alt": "Wooden Aquarium Stand 120cm",
     "tag": "new",
     "tagText": "New",
@@ -716,7 +716,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Metal Aquarium Stand 90cm",
-    "image": "images/product-stand-metal.jpg",
+    "image": "images/product-stand-metal.webp",
     "alt": "Metal Aquarium Stand 90cm",
     "tag": "",
     "tagText": "",
@@ -733,7 +733,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Cabinet Stand 60cm with Storage",
-    "image": "images/product-stand-cabinet.jpg",
+    "image": "images/product-stand-cabinet.webp",
     "alt": "Cabinet Stand 60cm with Storage",
     "tag": "hot",
     "tagText": "Hot",
@@ -750,7 +750,7 @@
   {
     "brand": "Fish Keeper",
     "name": "Open Shelf Stand 150cm",
-    "image": "images/product-stand-shelf.jpg",
+    "image": "images/product-stand-shelf.webp",
     "alt": "Open Shelf Stand 150cm",
     "tag": "",
     "tagText": "",
@@ -767,11 +767,11 @@
   {
     "brand": "Fish Keeper",
     "name": "Open Shelf Stand 150cm 2p",
-    "image": "images/product-stand-shelf-2p.jpg",
+    "image": "images/product-stand-shelf-2p.webp",
     "alt": "Open Shelf Stand 150cm 2p",
     "tag": "",
     "tagText": "",
-    "featured": true,
+    "featured": false,
     "rating": 5,
     "score": "5",
     "reviews": "1000 reviews",

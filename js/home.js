@@ -52,7 +52,8 @@
         document.getElementById('cat-title').textContent = data.meta.title;
         document.getElementById('cat-sub').textContent = data.meta.subtitle;
         grid.innerHTML = data.items.filter(c => !c.parent).map(cat =>
-            '<a class="cat-card reveal" href="/product-category/' + cat.slug + '/" style="background-image: url(\'' + cat.image + '\');">' +
+            '<a class="cat-card reveal" href="/product-category/' + cat.slug + '/">' +
+                '<img src="' + cat.image + '" alt="' + escapeHtml(cat.name) + '" loading="lazy" width="400" height="300">' +
                 '<div class="cat-overlay"></div>' +
                 '<div class="cat-content">' +
                     '<h3>' + cat.name + '</h3>' +
