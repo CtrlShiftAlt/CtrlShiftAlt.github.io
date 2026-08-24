@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <meta name="description" content="Shop aquarium equipment — filters, pumps, lighting, heating and more.">
+    <meta name="theme-color" content="#0a7d8c">
+    <title>Shop · Fish Keeper</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shop · Fish Keeper">
+    <meta property="og:description" content="Shop aquarium equipment — filters, pumps, lighting, heating and more.">
+    <meta property="og:image" content="images/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="images/fishkeeper-logo.jpg">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/shop.css">
+</head>
+<body id="top" data-page="category">
+<a href="#main" class="skip-link">Skip to main content</a>
+<div id="header-slot"></div>
+<div id="search-slot"></div>
+<main id="main">
+<div id="products-page-slot"></div>
+</main>
+<div id="footer-slot"></div>
+<script>window.PRESET_CATEGORY = "water-pumps";</script>
+<script src="js/app.js"></script>
+<script src="js/products.js"></script>
+<script>
+bootApp([
+    { url: 'partials/header.html',        mountId: 'header-slot' },
+    { url: 'partials/search-modal.html',  mountId: 'search-slot' },
+    { url: 'partials/page-products.html', mountId: 'products-page-slot' },
+    { url: 'partials/footer.html',        mountId: 'footer-slot' }
+]);
+</script>
+</body>
+</html>

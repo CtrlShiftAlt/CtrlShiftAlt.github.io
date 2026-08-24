@@ -1,0 +1,355 @@
+/* ============ shop.css · Products listing page ============
+   页面顶部区域 (text only), category banner image, sidebar 筛选s,
+   toolbar, 产品网格 (3-col), 分页. Loaded on /shop/ and
+   /产品-category/{slug}/ 页面. */
+
+/* ============================================================
+   1. Category banner — full-width image below 页面顶部区域
+   ============================================================ */
+.cat-banner {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+@media (max-width: 767px) { .cat-banner { margin-bottom: 20px; } }
+
+/* 产品列表页s — hide 品牌故事 (all 产品s are Fish Keeper) */
+.shop-section .product-brand { display: none; }
+.shop-section { padding: 40px 0 80px; background: var(--bg-soft); }
+.shop-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+/* ============================================================
+   3. Sidebar 筛选s
+   ============================================================ */
+.shop-sidebar {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--line);
+    position: sticky;
+    top: 100px;
+}
+.sidebar-close { display: none; }
+
+.filter-group {
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+}
+.filter-group:last-of-type { border-bottom: none; margin-bottom: 20px; }
+.filter-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 14px;
+}
+.filter-options { display: flex; flex-direction: column; gap: 12px; }
+
+/* Category links (single-select, 导航igates to category page) */
+.filter-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: all 0.2s;
+    line-height: 1.3;
+}
+.filter-link small {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    opacity: 0.75;
+}
+.filter-link:hover { background: var(--bg-soft); color: var(--text); }
+.filter-link.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.filter-link.active small { color: var(--accent); opacity: 0.7; }
+
+/* Parent category with expandable children */
+.filter-link.parent {
+    font-weight: 700;
+    color: var(--text);
+    position: relative;
+    padding-right: 28px;
+}
+.filter-link.parent .cat-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+}
+.filter-link.parent.open .cat-toggle { transform: translateY(-50%) rotate(90deg); }
+.filter-link.child { padding-left: 28px; font-size: 13px; }
+.filter-children { display: none; flex-direction: column; gap: 4px; }
+.filter-children.open { display: flex; }
+
+/* Checkbox / radio 筛选s */
+.filter-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-soft);
+    transition: color 0.2s;
+    padding: 2px 0;
+}
+.filter-check:hover { color: var(--text); }
+.filter-check input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+.filter-check span { display: flex; flex-direction: column; gap: 2px; line-height: 1.3; }
+.filter-check small {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    opacity: 0.75;
+}
+.filter-check input:checked + span { color: var(--accent); font-weight: 600; }
+.filter-check input:checked + span small { color: var(--accent); opacity: 0.7; }
+
+/* Clear 筛选s button */
+.btn-clear {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-soft);
+    color: var(--text-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-clear:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ============================================================
+   4. Main content area
+   ============================================================ */
+.shop-main { min-width: 0; }
+
+/* Toolbar (筛选 toggle + count + 排序 + 视图切换) */
+.shop-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.toolbar-left { display: flex; align-items: center; gap: 16px; }
+.filter-toggle {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.filter-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.result-count { font-size: 14px; color: var(--text-soft); }
+.toolbar-right { display: flex; align-items: center; gap: 16px; }
+
+/* 排序 dropdown */
+.sort-wrap { display: flex; align-items: center; gap: 8px; }
+.sort-wrap label { font-size: 13px; color: var(--text-soft); font-weight: 500; }
+.sort-wrap select {
+    padding: 9px 36px 9px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23647084' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 42px;
+}
+.sort-wrap select:focus { outline: none; border-color: var(--accent); }
+
+/* 视图切换 (网格 / list) */
+.view-toggle {
+    display: flex;
+    background: var(--bg);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.view-btn {
+    width: 42px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+.view-btn + .view-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--line);
+}
+.view-btn:hover { color: var(--accent); background: var(--bg-soft); }
+.view-btn.active { background: var(--accent); color: #fff; }
+.view-btn.active + .view-btn::before { display: none; }
+
+/* ============================================================
+   5. 产品s 网格 (3-col, overrides 组件.css 4-col)
+   ============================================================ */
+.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.products.list-view { grid-template-columns: 1fr; gap: 16px; }
+.products.list-view .product { flex-direction: row; }
+.products.list-view .product-img { width: 200px; min-width: 200px; aspect-ratio: auto; }
+.products.list-view .product-body { padding: 20px 24px; }
+.products.list-view .product-name { font-size: 17px; }
+.products-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-soft);
+    background: var(--bg);
+    border-radius: 16px;
+    border: 1px solid var(--line);
+}
+
+/* ============================================================
+   6. 分页
+   ============================================================ */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 40px;
+}
+.page-btn {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.page-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.page-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.page-dots { color: var(--text-soft); padding: 0 4px; }
+
+/* ============================================================
+   7. Sidebar overlay (移动端)
+   ============================================================ */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.sidebar-overlay.open { display: block; opacity: 1; }
+
+/* ============================================================
+   8. 响应式 — 平板端 (≤1199px)
+   ============================================================ */
+@media (max-width: 1199px) {
+    .products { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   9. 响应式 — Small 平板端 (≤991px)
+   ============================================================ */
+@media (max-width: 991px) {
+    /* Sidebar becomes 移动端 drawer */
+    .shop-layout { grid-template-columns: 1fr; }
+    .filter-toggle { display: inline-flex; }
+    .shop-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(320px, 85vw);
+        height: 100vh;
+        z-index: 250;
+        border-radius: 0;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+    }
+    .shop-sidebar.open { transform: translateX(0); }
+    .sidebar-close {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-soft);
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        color: var(--text-soft);
+        cursor: pointer;
+    }
+}
+
+/* ============================================================
+   10. 响应式 — 移动端 (≤767px)
+   ============================================================ */
+@media (max-width: 767px) {
+    .shop-section { padding: 24px 0 48px; }
+    .products { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .products.list-view .product-img { width: 120px; min-width: 120px; }
+    .products.list-view .product-body { padding: 12px 14px; }
+    .products.list-view .product-name { font-size: 14px; }
+    .shop-toolbar { gap: 12px; }
+    .toolbar-right { width: 100%; justify-content: space-between; }
+    .sort-wrap { flex: 1; }
+    .sort-wrap select { flex: 1; }
+}

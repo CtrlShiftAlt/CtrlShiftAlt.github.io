@@ -1,0 +1,143 @@
+/* ============ 产品.css · 产品详情页 page ============
+   面包屑, 产品图片 + info layout, 相关产品. */
+
+/* Compact 面包屑 首屏 */
+.page-hero-sm { padding: 14px 0 16px; }
+.page-hero-sm .breadcrumb { margin-bottom: 0; }
+
+/* ============================================================
+   1. 产品详情页 layout (image left + info right)
+   ============================================================ */
+.product-detail-section { padding: 48px 0 56px; background: var(--bg); }
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+/* Gallery */
+.product-gallery { position: sticky; top: 120px; }
+.product-main-image {
+    background: var(--bg-soft);
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info */
+.product-info { display: flex; flex-direction: column; gap: 16px; }
+.product-info .product-brand {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: -4px;
+}
+.product-title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    color: var(--text);
+    margin: 0;
+}
+.product-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-soft);
+}
+.product-rating-row .stars { color: var(--gold); font-size: 15px; letter-spacing: 1px; }
+
+.product-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+.product-price-row .price-now {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent-dark);
+}
+.product-price-row .price-now small { font-size: 18px; font-weight: 600; }
+.product-price-row .price-old {
+    font-size: 18px;
+    color: var(--text-soft);
+    text-decoration: line-through;
+}
+
+.product-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    margin: 0;
+}
+
+/* Actions */
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.btn-buy {
+    flex: 1;
+    min-width: 200px;
+    justify-content: center;
+    font-size: 16px;
+    padding: 14px 32px;
+}
+
+/* Meta */
+.product-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.meta-item span { color: var(--text-soft); }
+.meta-item strong { color: var(--text); font-weight: 600; }
+
+/* ============================================================
+   2. 相关产品 (uses shared .产品s 网格 from 组件.css)
+   ============================================================ */
+#related-section { padding-top: 56px; padding-bottom: 64px; }
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 1199px) {
+    .product-detail-layout { gap: 32px; }
+    .product-title { font-size: 28px; }
+    .product-price-row .price-now { font-size: 30px; }
+}
+@media (max-width: 767px) {
+    .product-detail-section { padding: 28px 0 36px; }
+    .product-detail-layout { grid-template-columns: 1fr; gap: 24px; }
+    .product-gallery { position: static; }
+    .product-title { font-size: 24px; }
+    .product-price-row .price-now { font-size: 26px; }
+    .product-price-row .price-old { font-size: 16px; }
+    .btn-add-cart { flex: 1 1 100%; order: 3; }
+    #related-section { padding-top: 36px; padding-bottom: 40px; }
+}

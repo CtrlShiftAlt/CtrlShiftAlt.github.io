@@ -1,0 +1,471 @@
+<!-- 产品列表页（用于 /shop/ 和 /product-category/{slug}/） -->
+<section class="page-hero" id="page-hero">
+    <div class="container">
+        <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a><span>&#8250;</span><span class="current">Shop</span>
+        </nav>
+        <h1 id="page-title">All Products</h1>
+        <p class="page-hero-sub" id="page-sub">Discover 2,800+ curated aquarium supplies — filter by price and brand.</p>
+    </div>
+</section>
+
+<section class="shop-section">
+    <div class="container">
+        <!-- 分类横幅图（仅分类页显示） -->
+        <div class="cat-banner" id="cat-banner" style="display:none;"></div>
+        <div class="shop-layout">
+        <!-- 侧边栏筛选 -->
+        <aside class="shop-sidebar" id="shop-sidebar">
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close filters">&times;</button>
+
+            <div class="filter-group">
+                <h3 class="filter-title">Category</h3>
+                <div class="filter-options" id="filter-cat"></div>
+            </div>
+
+            <div class="filter-group">
+                <h3 class="filter-title">Price Range</h3>
+                <div class="filter-options" id="filter-price">
+                    <label class="filter-check"><input type="radio" name="price" value="all" checked><span>All Prices</span></label>
+                    <label class="filter-check"><input type="radio" name="price" value="0-20"><span>Under $20</span></label>
+                    <label class="filter-check"><input type="radio" name="price" value="20-50"><span>$20 - $50</span></label>
+                    <label class="filter-check"><input type="radio" name="price" value="50-100"><span>$50 - $100</span></label>
+                    <label class="filter-check"><input type="radio" name="price" value="100+"><span>$100+</span></label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3 class="filter-title">Brand</h3>
+                <div class="filter-options" id="filter-brand">
+                    <!-- 由 JS 填充 -->
+                </div>
+            </div>
+
+            <button class="btn btn-clear" id="clear-filters">Clear All Filters</button>
+        </aside>
+
+        <!-- 主内容区 -->
+        <div class="shop-main">
+            <!-- 工具栏 -->
+            <div class="shop-toolbar">
+                <div class="toolbar-left">
+                    <button class="filter-toggle" id="filter-toggle" aria-label="Toggle filters">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+                        Filters
+                    </button>
+                    <span class="result-count" id="result-count"></span>
+                </div>
+                <div class="toolbar-right">
+                    <div class="sort-wrap">
+                        <label for="sort-select">Sort by</label>
+                        <select id="sort-select">
+                            <option value="featured">Featured</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating">Top Rated</option>
+                        </select>
+                    </div>
+                    <div class="view-toggle" role="tablist">
+                        <button class="view-btn active" data-view="grid" aria-label="Grid view" aria-pressed="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        </button>
+                        <button class="view-btn" data-view="list" aria-label="List view" aria-pressed="false">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品列表 -->
+            <div class="products" id="products-grid">
+                <!-- 由 JS 渲染 -->
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination" id="pagination">
+                <!-- 由 JS 渲染 -->
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+</section>
+
+<script>
+// ============ 产品列表页：分类（路径式，2级）+ 价格/品牌筛选 + 排序 + 分页 ============
+(async function initShopPage() {
+    // 设置 meta 标签（name 或 property 属性）
+    function setMeta(name, content, isProperty) {
+        const attr = isProperty ? 'property' : 'name';
+        let el = document.querySelector('meta[' + attr + '="' + name + '"]');
+        if (!el) {
+            el = document.createElement('meta');
+            el.setAttribute(attr, name);
+            document.head.appendChild(el);
+        }
+        el.setAttribute('content', content);
+    }
+
+    const grid = document.getElementById('products-grid');
+    const countEl = document.getElementById('result-count');
+    const sortSelect = document.getElementById('sort-select');
+    const pagination = document.getElementById('pagination');
+    const catFilters = document.getElementById('filter-cat');
+    const priceFilters = document.getElementById('filter-price');
+    const brandFilters = document.getElementById('filter-brand');
+    const clearBtn = document.getElementById('clear-filters');
+    const viewBtns = document.querySelectorAll('.view-btn');
+    const filterToggle = document.getElementById('filter-toggle');
+    const sidebar = document.getElementById('shop-sidebar');
+    const sidebarClose = document.getElementById('sidebar-close');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    if (!grid) return;
+
+    const PER_PAGE = 12;
+    let allProducts = [];
+    let categories = [];
+    let currentPage = 1;
+    let currentView = 'grid';
+
+    // Preset: either a single category slug or a parent slug (shows all children)
+    const presetSlug = window.PRESET_CATEGORY || null;
+    const presetParent = window.PRESET_PARENT || null;
+
+    const state = {
+        price: 'all',
+        brand: 'all',
+        sort: 'featured',
+        search: ''
+    };
+
+    const pageTitle = document.getElementById('page-title');
+    const pageSub = document.getElementById('page-sub');
+    const breadcrumb = document.getElementById('breadcrumb');
+    const pageHero = document.getElementById('page-hero');
+
+    function currentQueryString(excludePage) {
+        const p = new URLSearchParams(window.location.search);
+        if (excludePage) p.delete('page');
+        const qs = p.toString();
+        return qs ? '?' + qs : '';
+    }
+
+    // 加载产品 + 分类数据
+    try {
+        const [productsData, categoriesData] = await Promise.all([
+            ProductRenderer.load(),
+            window.DataStore.categories()
+        ]);
+        allProducts = productsData;
+        categories = categoriesData.items;
+
+        // 构建查找映射
+        const catBySlug = {};
+        const childrenByParent = {};
+        categories.forEach(cat => {
+            catBySlug[cat.slug] = cat;
+            if (cat.parent) {
+                if (!childrenByParent[cat.parent]) childrenByParent[cat.parent] = [];
+                childrenByParent[cat.parent].push(cat);
+            }
+        });
+
+        // 根据 slug 获取分类 URL 路径（处理父/子分类）
+        function catPath(slug) {
+            const cat = catBySlug[slug];
+            if (!cat) return '/shop/';
+            if (cat.parent) return '/product-category/' + cat.parent + '/' + slug + '/';
+            return '/product-category/' + slug + '/';
+        }
+
+        // 确定当前激活的分类 slug（用于过滤）
+        let activeCatSlugs = [];  // 需要显示产品的分类 slug 数组
+        let activeCatLabel = '';   // 标题/面包屑显示名
+        let activeCatMeta = null;  // hero 背景图元信息
+        if (presetParent && childrenByParent[presetParent]) {
+            activeCatSlugs = childrenByParent[presetParent].map(c => c.slug);
+            activeCatLabel = catBySlug[presetParent].name;
+            activeCatMeta = catBySlug[presetParent];
+        } else if (presetSlug && catBySlug[presetSlug]) {
+            activeCatSlugs = [catBySlug[presetSlug].slug];
+            activeCatLabel = catBySlug[presetSlug].name;
+            activeCatMeta = catBySlug[presetSlug];
+        }
+
+        // 渲染侧边栏分类树
+        // 分类链接保留 sort/price/brand 参数，但清除搜索关键词
+        const catParams = new URLSearchParams(window.location.search);
+        catParams.delete('page');
+        catParams.delete('q');
+        const qs = catParams.toString() ? '?' + catParams.toString() : '';
+        let sidebarHtml = '<a class="filter-link' + (!presetSlug && !presetParent ? ' active' : '') + '" href="/shop/' + qs + '">All Products</a>';
+        categories.filter(c => !c.parent).forEach(parent => {
+            const children = childrenByParent[parent.slug] || [];
+            const isParentActive = presetParent === parent.slug;
+            if (children.length) {
+                // 有子分类的父分类：可展开
+                const isOpen = isParentActive || children.some(c => c.slug === presetSlug);
+                sidebarHtml += '<a class="filter-link parent' + (isParentActive ? ' active' : '') + (isOpen ? ' open' : '') + '" href="' + catPath(parent.slug) + qs + '" data-parent="' + parent.slug + '">' +
+                    escapeHtml(parent.name) + '<span class="cat-toggle">&#9654;</span><small>' + escapeHtml(parent.subtitle) + '</small></a>';
+                sidebarHtml += '<div class="filter-children' + (isOpen ? ' open' : '') + '" data-children="' + parent.slug + '">';
+                children.forEach(child => {
+                    sidebarHtml += '<a class="filter-link child' + (presetSlug === child.slug ? ' active' : '') + '" href="' + catPath(child.slug) + qs + '">' +
+                        escapeHtml(child.name) + '</a>';
+                });
+                sidebarHtml += '</div>';
+            } else {
+                // 无子分类的一级分类
+                sidebarHtml += '<a class="filter-link' + (presetSlug === parent.slug ? ' active' : '') + '" href="' + catPath(parent.slug) + qs + '">' +
+                    escapeHtml(parent.name) + '<small>' + escapeHtml(parent.subtitle) + '</small></a>';
+            }
+        });
+        catFilters.innerHTML = sidebarHtml;
+
+        // 父分类展开/收起（不跳转）
+        catFilters.querySelectorAll('.filter-link.parent').forEach(link => {
+            const toggle = link.querySelector('.cat-toggle');
+            if (toggle) {
+                toggle.addEventListener('click', e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const slug = link.dataset.parent;
+                    const childrenEl = catFilters.querySelector('[data-children="' + slug + '"]');
+                    link.classList.toggle('open');
+                    if (childrenEl) childrenEl.classList.toggle('open');
+                });
+            }
+        });
+
+        // 暴露给 render() 使用
+        window._shop = { catBySlug, childrenByParent, catPath, activeCatSlugs, activeCatLabel, activeCatMeta };
+    } catch (e) {
+        grid.innerHTML = '<p class="products-empty">产品加载失败。</p>';
+        return;
+    }
+
+    const shop = window._shop;
+
+    // 品牌 slug 工具
+    function toSlug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+    const allBrands = [...new Set(allProducts.map(p => p.brand))].sort();
+    const brandBySlug = {};
+    allBrands.forEach(b => { brandBySlug[toSlug(b)] = b; });
+
+    brandFilters.innerHTML =
+        '<label class="filter-check"><input type="radio" name="brand" value="all" checked><span>All Brands</span></label>' +
+        allBrands.map(b =>
+            '<label class="filter-check"><input type="radio" name="brand" value="' + toSlug(b) + '"><span>' + escapeHtml(b) + '</span></label>'
+        ).join('');
+    state.brand = 'all';
+
+    function syncUiFromState() {
+        if (priceFilters) {
+            const radio = priceFilters.querySelector('input[value="' + state.price + '"]');
+            if (radio) radio.checked = true;
+        }
+        if (brandFilters) {
+            const radio = brandFilters.querySelector('input[value="' + state.brand + '"]');
+            if (radio) radio.checked = true;
+        }
+        if (sortSelect) sortSelect.value = state.sort;
+    }
+
+    function applyUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        state.price = 'all';
+        state.brand = 'all';
+        state.sort = 'featured';
+        state.search = '';
+        currentPage = 1;
+
+        const qParam = params.get('q');
+        if (qParam) state.search = qParam.trim().toLowerCase();
+        const sortParam = params.get('sort');
+        if (sortParam && ['featured','price-asc','price-desc','rating'].includes(sortParam)) state.sort = sortParam;
+        const priceParam = params.get('price');
+        if (priceParam && ['all','0-20','20-50','50-100','100+'].includes(priceParam)) state.price = priceParam;
+        const brandParam = params.get('brand');
+        if (brandParam && (brandParam === 'all' || brandBySlug[brandParam])) state.brand = brandParam;
+        const pageParam = parseInt(params.get('page'));
+        if (pageParam && pageParam > 1) currentPage = pageParam;
+
+        syncUiFromState();
+    }
+
+    applyUrlParams();
+
+    function updateUrl() {
+        const parts = [];
+        if (state.price !== 'all') parts.push('price=' + state.price);
+        if (state.brand !== 'all') parts.push('brand=' + encodeURIComponent(state.brand));
+        if (state.search) parts.push('q=' + encodeURIComponent(state.search));
+        if (state.sort !== 'featured') parts.push('sort=' + state.sort);
+        if (currentPage > 1) parts.push('page=' + currentPage);
+        let path = '/shop/';
+        if (presetParent) path = '/product-category/' + presetParent + '/';
+        else if (presetSlug) path = shop.catPath(presetSlug);
+        history.replaceState(null, '', path + (parts.length ? '?' + parts.join('&') : ''));
+    }
+
+    function getFiltered() {
+        let list = allProducts.slice();
+        // 分类过滤：按激活的分类 slug
+        if (shop.activeCatSlugs.length) {
+            list = list.filter(p => shop.activeCatSlugs.indexOf(p.catSlug) !== -1);
+        }
+        // 品牌过滤
+        if (state.brand !== 'all' && brandBySlug[state.brand]) {
+            const brandName = brandBySlug[state.brand];
+            list = list.filter(p => p.brand === brandName);
+        }
+        // 搜索过滤（匹配产品名、品牌、分类名）
+        if (state.search) {
+            list = list.filter(p => {
+                const catName = (shop.catBySlug[p.catSlug] && shop.catBySlug[p.catSlug].name) || '';
+                const haystack = (p.name + ' ' + p.brand + ' ' + catName).toLowerCase();
+                return haystack.indexOf(state.search) !== -1;
+            });
+        }
+        // 价格过滤
+        if (state.price !== 'all') {
+            list = list.filter(p => {
+                const v = ProductRenderer.priceValue(p);
+                if (state.price === '0-20') return v < 20;
+                if (state.price === '20-50') return v >= 20 && v < 50;
+                if (state.price === '50-100') return v >= 50 && v < 100;
+                if (state.price === '100+') return v >= 100;
+                return true;
+            });
+        }
+        // 排序
+        if (state.sort === 'featured') {
+            // featured 优先，同组内按评分降序
+            list.sort((a, b) => {
+                if (a.featured !== b.featured) return a.featured ? -1 : 1;
+                return (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0);
+            });
+        } else if (state.sort === 'price-asc') list.sort((a, b) => ProductRenderer.priceValue(a) - ProductRenderer.priceValue(b));
+        else if (state.sort === 'price-desc') list.sort((a, b) => ProductRenderer.priceValue(b) - ProductRenderer.priceValue(a));
+        else if (state.sort === 'rating') list.sort((a, b) => (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0));
+        return list;
+    }
+
+    function render() {
+        const filtered = getFiltered();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+        if (currentPage > totalPages) currentPage = totalPages;
+        const start = (currentPage - 1) * PER_PAGE;
+        const pageItems = filtered.slice(start, start + PER_PAGE);
+
+        countEl.textContent = filtered.length + ' product' + (filtered.length === 1 ? '' : 's');
+
+        // 标题 / 面包屑 / hero
+        const catBanner = document.getElementById('cat-banner');
+        if (state.search) {
+            pageTitle.textContent = 'Search: "' + state.search + '"';
+            pageSub.textContent = 'Results matching "' + state.search + '"';
+            breadcrumb.innerHTML = '<a href="/">Home</a><span>&#8250;</span><a href="/shop/">Shop</a><span>&#8250;</span><span class="current">Search</span>';
+            pageHero.style.background = '';
+            if (catBanner) catBanner.style.display = 'none';
+        } else if (shop.activeCatLabel) {
+            const meta = shop.activeCatMeta;
+            pageTitle.textContent = shop.activeCatLabel;
+            pageSub.textContent = meta.subtitle + ' — ' + meta.description;
+            // 动态设置页面标题和 meta（使 <head> 可通用）
+            document.title = shop.activeCatLabel + ' · Fish Keeper';
+            setMeta('description', meta.description);
+            setMeta('og:title', shop.activeCatLabel + ' · Fish Keeper', true);
+            setMeta('og:description', meta.description, true);
+            setMeta('og:image', meta.image, true);
+            // 面包屑：处理父 > 子层级
+            let bc = '<a href="/">Home</a><span>&#8250;</span><a href="/shop/">Shop</a><span>&#8250;</span>';
+            if (presetParent) {
+                const parentCat = shop.catBySlug[presetParent];
+                bc += '<a href="' + shop.catPath(presetParent) + '">' + parentCat.name + '</a><span>&#8250;</span>';
+            }
+            if (presetSlug && presetParent) {
+                bc += '<span class="current">' + shop.activeCatLabel + '</span>';
+            } else {
+                bc += '<span class="current">' + shop.activeCatLabel + '</span>';
+            }
+            breadcrumb.innerHTML = bc;
+            pageHero.style.background = '';
+            if (catBanner) {
+                catBanner.style.display = 'block';
+                catBanner.style.backgroundImage = 'url(' + meta.image + ')';
+            }
+        } else {
+            pageTitle.textContent = 'All Products';
+            pageSub.textContent = 'Discover 2,800+ curated aquarium supplies — filter by price and brand.';
+            breadcrumb.innerHTML = '<a href="/">Home</a><span>&#8250;</span><span class="current">Shop</span>';
+            pageHero.style.background = '';
+            if (catBanner) catBanner.style.display = 'none';
+        }
+
+        if (!pageItems.length) {
+            grid.innerHTML = '<p class="products-empty">No products match your filters. Try adjusting your selection.</p>';
+            pagination.innerHTML = '';
+            return;
+        }
+        ProductRenderer.renderGrid(grid, pageItems);
+        grid.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        renderPagination(filtered.length, totalPages);
+    }
+
+    function renderPagination(total, totalPages) {
+        if (totalPages <= 1) { pagination.innerHTML = ''; return; }
+        let html = '';
+        html += '<button class="page-btn" data-page="' + (currentPage - 1) + '" ' + (currentPage === 1 ? 'disabled' : '') + '>&lsaquo;</button>';
+        for (let i = 1; i <= totalPages; i++) {
+            html += '<button class="page-btn' + (i === currentPage ? ' active' : '') + '" data-page="' + i + '">' + i + '</button>';
+        }
+        html += '<button class="page-btn" data-page="' + (currentPage + 1) + '" ' + (currentPage === totalPages ? 'disabled' : '') + '>&rsaquo;</button>';
+        pagination.innerHTML = html;
+        pagination.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const p = parseInt(btn.dataset.page);
+                if (p >= 1 && p <= totalPages) { currentPage = p; render(); updateUrl(); window.scrollTo({ top: grid.offsetTop - 120, behavior: 'smooth' }); }
+            });
+        });
+    }
+
+    // 事件监听
+    priceFilters.addEventListener('change', e => {
+        if (e.target.name === 'price') { state.price = e.target.value; currentPage = 1; render(); updateUrl(); }
+    });
+    brandFilters.addEventListener('change', e => {
+        if (e.target.name === 'brand') { state.brand = e.target.value; currentPage = 1; render(); updateUrl(); }
+    });
+    sortSelect.addEventListener('change', () => { state.sort = sortSelect.value; currentPage = 1; render(); updateUrl(); });
+    clearBtn.addEventListener('click', () => {
+        state.price = 'all';
+        state.brand = 'all';
+        state.sort = 'featured';
+        currentPage = 1;
+        syncUiFromState();
+        render();
+        updateUrl();
+    });
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            viewBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+            currentView = btn.dataset.view;
+            grid.classList.toggle('list-view', currentView === 'list');
+        });
+    });
+
+    function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+    filterToggle.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    render();
+
+    window.addEventListener('popstate', () => {
+        applyUrlParams();
+        render();
+    });
+})();
+</script>

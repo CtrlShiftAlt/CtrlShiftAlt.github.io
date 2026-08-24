@@ -1,0 +1,60 @@
+<!-- ============================================================
+     产品详情 partial
+     从产品页设置的 window.PRESET_PRODUCT（slug）读取数据。
+     ============================================================ -->
+
+<!-- 1. 面包屑 -->
+<section class="page-hero page-hero-sm">
+    <div class="container">
+        <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a><span>&#8250;</span><a href="/shop/">Shop</a><span>&#8250;</span><span class="current" id="bc-cat">Category</span><span>&#8250;</span><span class="current" id="bc-product">Product</span>
+        </nav>
+    </div>
+</section>
+
+<!-- 2. 产品详情（图片 + 信息） -->
+<section class="product-detail-section">
+    <div class="container">
+        <div class="product-detail-layout" id="product-detail">
+            <div class="product-gallery">
+                <div class="product-main-image" id="product-image-wrap">
+                    <img id="product-image" src="" alt="" width="600" height="600">
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-brand" id="product-brand"></div>
+                <h1 class="product-title" id="product-title"></h1>
+                <div class="product-rating-row" id="product-rating"></div>
+                <div class="product-price-row" id="product-price"></div>
+                <p class="product-desc" id="product-desc"></p>
+                <div class="product-actions">
+                    <a href="https://www.baidu.com" target="_blank" rel="noopener" class="btn btn-primary btn-buy" id="buy-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Buy Now
+                    </a>
+                </div>
+                <div class="product-meta">
+                    <div class="meta-item"><span>Brand</span><strong id="meta-brand"></strong></div>
+                    <div class="meta-item"><span>Category</span><strong id="meta-cat"></strong></div>
+                    <div class="meta-item"><span>SKU</span><strong id="meta-sku"></strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. 相关产品 -->
+<section class="section section-alt" id="related-section">
+    <div class="container">
+        <div class="section-head-row reveal">
+            <div class="section-head-text">
+                <span class="section-eyebrow">You May Also Like</span>
+                <h2 class="section-title">Related Products</h2>
+            </div>
+            <a href="/shop/" class="btn btn-outline-dark">View All <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="products" id="related-grid"></div>
+    </div>
+</section>
+
+<script src="js/product-detail.js"></script>

@@ -1,0 +1,153 @@
+{
+  "brand": {
+    "name": "Fish Keeper",
+    "logo": "images/fishkeeper-logo.jpg",
+    "description": "Dedicated to aquatics for 15 years, crafting the ideal underwater world for every fish. From live delivery and aquarium equipment to expert care consulting, a one-stop destination for aquarium enthusiasts.",
+    "socials": [
+      {
+        "name": "Instagram",
+        "icon": "images/icon-instagram.svg",
+        "href": "#"
+      },
+      {
+        "name": "Facebook",
+        "icon": "images/icon-facebook.svg",
+        "href": "#"
+      },
+      {
+        "name": "YouTube",
+        "icon": "images/icon-youtube.svg",
+        "href": "#"
+      },
+      {
+        "name": "Twitter",
+        "icon": "images/icon-twitter.svg",
+        "href": "#"
+      }
+    ]
+  },
+  "columns": [
+    {
+      "title": "Shop",
+      "links": [
+        {
+          "text": "All Products",
+          "href": "/shop/"
+        },
+        {
+          "text": "Cleaners",
+          "href": "/product-category/cleaners/"
+        },
+        {
+          "text": "Filters",
+          "href": "/product-category/filters/"
+        },
+        {
+          "text": "Air Pumps",
+          "href": "/product-category/air-pumps/"
+        },
+        {
+          "text": "Water Pumps",
+          "href": "/product-category/water-pumps/"
+        },
+        {
+          "text": "Wave Maker",
+          "href": "/product-category/aquarium-wave-maker/"
+        },
+        {
+          "text": "Lights",
+          "href": "/product-category/lights/"
+        },
+        {
+          "text": "Fish Feeder",
+          "href": "/product-category/fish-feeder/"
+        },
+        {
+          "text": "Aquarium Chiller",
+          "href": "/product-category/aquarium-chiller/"
+        },
+        {
+          "text": "Heaters",
+          "href": "/product-category/heaters/"
+        },
+        {
+          "text": "Fish Tank",
+          "href": "/product-category/fish-tank/"
+        },
+        {
+          "text": "Aquarium Stand",
+          "href": "/product-category/aquarium-stand/"
+        }
+      ]
+    },
+    {
+      "title": "Support",
+      "links": [
+        {
+          "text": "Contact Us",
+          "href": "/contact.html"
+        },
+        {
+          "text": "FAQ",
+          "href": "/contact.html#faq"
+        },
+        {
+          "text": "Store Locator",
+          "href": "/contact.html#contact"
+        }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        {
+          "text": "About Us",
+          "href": "/about.html"
+        },
+        {
+          "text": "Our Story",
+          "href": "/about.html#story"
+        },
+        {
+          "text": "Our Values",
+          "href": "/about.html#values"
+        },
+        {
+          "text": "Our Journey",
+          "href": "/about.html#journey"
+        },
+        {
+          "text": "Our Voice",
+          "href": "/about.html#creed"
+        },
+        {
+          "text": "Stats",
+          "href": "/about.html#stats"
+        },
+        {
+          "text": "Join Us",
+          "href": "/about.html#cta"
+        }
+      ]
+    }
+  ],
+  "copyright": "© 2026 Fish Keeper · Aquarium Lifestyle Store",
+  "payments": [
+    {
+      "name": "PayPal",
+      "icon": "images/icon-paypal.svg"
+    },
+    {
+      "name": "Visa",
+      "icon": "images/icon-visa.svg"
+    },
+    {
+      "name": "Mastercard",
+      "icon": "images/icon-mastercard.svg"
+    },
+    {
+      "name": "Amex",
+      "icon": "images/icon-amex.svg"
+    }
+  ]
+}

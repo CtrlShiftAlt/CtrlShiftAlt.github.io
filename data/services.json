@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "images/icon-shipping.svg",
+    "title": "Live Cold-Chain Shipping",
+    "description": "Insulated packaging with oxygen packs, nationwide delivery"
+  },
+  {
+    "icon": "images/icon-shield.svg",
+    "title": "7-Day Health Guarantee",
+    "description": "Every live animal backed by our arrival health promise"
+  },
+  {
+    "icon": "images/icon-chat.svg",
+    "title": "Expert Aquatic Advisor",
+    "description": "One-on-one free consulting from seasoned aquarists"
+  },
+  {
+    "icon": "images/icon-return.svg",
+    "title": "30-Day Easy Returns",
+    "description": "Worry-free after-sales for all equipment and supplies"
+  }
+]

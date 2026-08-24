@@ -1,0 +1,16 @@
+{
+  "badge": "🐠 Trusted by 120,000+ aquarium hobbyists",
+  "title": "Crafting the ideal",
+  "titleHighlight": "underwater world",
+  "description": "From premium filtration systems to hand-selected live species, everything you need for a thriving aquarium — delivered with cold-chain care and a 7-day health guarantee.",
+  "primaryCta": {
+    "text": "Shop Best Sellers",
+    "href": "#products"
+  },
+  "secondaryCta": {
+    "text": "Browse All Products",
+    "href": "/shop/"
+  },
+  "image": "images/hero.jpg",
+  "imageAlt": "Beautiful aquarium"
+}

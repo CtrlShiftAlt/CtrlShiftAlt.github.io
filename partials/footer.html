@@ -1,0 +1,46 @@
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top" id="footer-top">
+            <div class="footer-brand">
+                <a href="#top" class="logo" aria-label="Fish Keeper home">
+                    <img class="logo-icon" id="footer-logo" alt="Fish Keeper" width="100" height="100">
+                </a>
+                <p id="footer-brand-desc"></p>
+                <div class="socials" id="footer-socials"></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span id="footer-copyright"></span>
+            <div class="payments" id="footer-payments"></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ============ Footer：从 footer.json 渲染 ============
+(async function renderFooter() {
+    const logo = document.getElementById('footer-logo');
+    if (!logo) return;
+    try {
+        const f = await window.DataStore.footer();
+        logo.src = f.brand.logo;
+        document.getElementById('footer-brand-desc').textContent = f.brand.description;
+        document.getElementById('footer-socials').innerHTML = f.brand.socials.map(s =>
+            '<a href="' + s.href + '" class="social" aria-label="' + s.name + '"><img src="' + s.icon + '" alt="' + s.name + '"></a>'
+        ).join('');
+        const colsHtml = f.columns.map(col =>
+            '<div class="footer-col"><h4>' + col.title + '</h4><ul>' +
+            col.links.map(l => '<li><a href="' + l.href + '">' + l.text + '</a></li>').join('') +
+            '</ul></div>'
+        ).join('');
+        document.getElementById('footer-top').insertAdjacentHTML('beforeend', colsHtml);
+        document.getElementById('footer-copyright').textContent = f.copyright;
+        document.getElementById('footer-payments').innerHTML = f.payments.map(p =>
+            '<span class="pay"><img src="' + p.icon + '" alt="' + p.name + '"></span>'
+        ).join('');
+    } catch (e) {
+        console.error('Footer 数据加载失败:', e);
+    }
+})();
+</script>

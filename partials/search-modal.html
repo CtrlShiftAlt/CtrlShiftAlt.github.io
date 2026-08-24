@@ -1,0 +1,59 @@
+<!-- 搜索弹窗 -->
+<div class="search-overlay" id="search-overlay">
+    <button class="search-close" id="search-close" aria-label="Close">×</button>
+    <div class="search-modal">
+        <div class="search-input-wrap">
+            <img src="images/icon-search.svg" alt="" width="20" height="20">
+            <input type="text" id="search-input" placeholder="Search aquarium equipment...">
+            <button class="btn btn-primary" id="search-submit">Search</button>
+        </div>
+        <div class="search-hint">
+            <div class="search-hint-title">Popular Searches</div>
+            <div class="search-tags" id="search-tags">
+                <span class="search-tag">Canister Filter</span>
+                <span class="search-tag">LED Light</span>
+                <span class="search-tag">Heater</span>
+                <span class="search-tag">Air Pump</span>
+                <span class="search-tag">Water Pump</span>
+                <span class="search-tag">Wave Maker</span>
+                <span class="search-tag">Fish Tank</span>
+                <span class="search-tag">Aquarium Chiller</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============ search.js · 搜索弹窗 ============
+function initSearch() {
+    const trigger = document.getElementById('search-trigger');
+    const overlay = document.getElementById('search-overlay');
+    const closeBtn = document.getElementById('search-close');
+    const input = document.getElementById('search-input');
+    const submit = document.getElementById('search-submit');
+    const tagsWrap = document.getElementById('search-tags');
+    if (!trigger || !overlay) return;
+    const open = () => { overlay.classList.add('open'); setTimeout(() => input && input.focus(), 250); };
+    const close = () => { overlay.classList.remove('open'); };
+    trigger.addEventListener('click', open);
+    closeBtn && closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+    if (tagsWrap) {
+        tagsWrap.addEventListener('click', (e) => {
+            const tag = e.target.closest('.search-tag');
+            if (!tag) return;
+            input.value = tag.textContent.trim();
+            input.focus();
+        });
+    }
+    const doSearch = () => {
+        const kw = (input.value || '').trim();
+        if (!kw) { input && input.focus(); return; }
+        // 跳转到产品列表页，携带搜索关键词
+        window.location.href = '/shop/?q=' + encodeURIComponent(kw);
+    };
+    submit && submit.addEventListener('click', doSearch);
+    input && input.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+}
+</script>

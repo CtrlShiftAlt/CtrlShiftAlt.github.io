@@ -1,0 +1,202 @@
+<!-- 公告栏 -->
+<div class="announce-bar" id="announce-bar">
+    <div class="container announce-inner">
+        <div class="announce-scroll">
+            <span id="announce-text"></span>
+            <span class="announce-text-copy" aria-hidden="true"></span>
+        </div>
+        <button class="announce-close" aria-label="Close announcement">&times;</button>
+    </div>
+</div>
+
+<!-- 主导航 -->
+<header class="header" id="site-header">
+    <div class="container nav">
+        <a href="/" class="logo" aria-label="Fish Keeper home">
+            <img class="logo-icon" src="images/fishkeeper-logo.jpg" alt="Fish Keeper" width="100" height="100">
+        </a>
+
+        <nav class="menu">
+            <a href="/">Home</a>
+            <div class="has-sub">
+                <a href="/shop/">Products</a>
+                <div class="submenu" id="products-submenu">
+                    <a href="/shop/">All Products</a>
+                </div>
+            </div>
+            <div class="has-sub">
+                <a href="/about.html">About</a>
+                <div class="submenu">
+                    <a href="/about.html#story">Our Story</a>
+                    <a href="/about.html#values">Our Values</a>
+                    <a href="/about.html#journey">Our Journey</a>
+                    <a href="/about.html#creed">Our Voice</a>
+                </div>
+            </div>
+            <a href="/contact.html">Contact</a>
+        </nav>
+
+        <div class="actions">
+            <button class="icon-btn" id="search-trigger" aria-label="Search">
+                <img src="images/icon-search.svg" alt="" width="20" height="20">
+            </button>
+            <button class="menu-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- 移动端抽屉菜单 -->
+<aside class="mobile-menu">
+    <div class="mobile-menu-head">
+        <a href="/" class="logo" aria-label="Fish Keeper home">
+            <img class="logo-icon" src="images/fishkeeper-logo.jpg" alt="Fish Keeper" width="56" height="56">
+        </a>
+        <button class="mobile-menu-close" aria-label="Close">&times;</button>
+    </div>
+    <nav class="mobile-nav">
+        <a href="/">Home <svg class="m-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
+        <div class="m-has-sub">
+            <button class="m-sub-toggle" aria-expanded="false">
+                <span>Products</span>
+                <svg class="m-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="m-submenu" id="m-products-submenu">
+                <a href="/shop/">All Products</a>
+            </div>
+        </div>
+        <div class="m-has-sub">
+            <button class="m-sub-toggle" aria-expanded="false">
+                <span>About</span>
+                <svg class="m-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="m-submenu">
+                <a href="/about.html#story">Our Story</a>
+                <a href="/about.html#values">Our Values</a>
+                <a href="/about.html#journey">Our Journey</a>
+                <a href="/about.html#creed">Our Belief</a>
+            </div>
+        </div>
+        <a href="/contact.html">Contact <svg class="m-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
+    </nav>
+    <div class="mobile-menu-foot">
+        <div class="m-contact">Support · 400-888-0000</div>
+        <div class="m-socials">
+            <a href="#" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="" width="18" height="18"></a>
+            <a href="#" aria-label="Instagram"><img src="images/icon-instagram.svg" alt="" width="18" height="18"></a>
+            <a href="#" aria-label="Twitter"><img src="images/icon-twitter.svg" alt="" width="18" height="18"></a>
+            <a href="#" aria-label="YouTube"><img src="images/icon-youtube.svg" alt="" width="18" height="18"></a>
+        </div>
+    </div>
+</aside>
+<div class="menu-overlay"></div>
+
+<script>
+// ============ Header：公告栏 + 滚动状态 ============
+function initHeaderScroll() {
+    const header = document.getElementById('site-header');
+    const announce = document.getElementById('announce-bar');
+    if (!header) return;
+
+    let ticking = false;
+    const onScroll = () => {
+        const scrolled = window.scrollY > 20;
+        header.classList.toggle('scrolled', scrolled);
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(() => { onScroll(); ticking = false; }); ticking = true; }
+    }, { passive: true });
+    onScroll();
+
+    // 公告栏关闭按钮
+    if (announce) {
+        const closeBtn = announce.querySelector('.announce-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                announce.classList.add('hidden');
+                document.body.classList.remove('has-announce');
+            });
+        }
+        // 给 body 加 class，用于 header 偏移计算
+        document.body.classList.add('has-announce');
+    }
+}
+
+// ============ 移动端菜单：抽屉 + 手风琴 ============
+function initMobileMenu() {
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.menu-overlay');
+    const closeBtn = document.querySelector('.mobile-menu-close');
+    if (!toggle || !menu || !overlay) return;
+
+    const open = () => { toggle.classList.add('open'); menu.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const close = () => { toggle.classList.remove('open'); menu.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; };
+
+    toggle.addEventListener('click', () => { menu.classList.contains('open') ? close() : open(); });
+    closeBtn && closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    menu.querySelectorAll('.mobile-nav > a, .m-submenu a').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu.classList.contains('open')) close(); });
+
+    const mq = window.matchMedia('(min-width: 1200px)');
+    const onPC = (e) => { if (e.matches) close(); };
+    if (mq.addEventListener) mq.addEventListener('change', onPC); else if (mq.addListener) mq.addListener(onPC);
+
+    const subToggles = menu.querySelectorAll('.m-sub-toggle');
+    subToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const parent = btn.parentElement;
+            const isOpen = parent.classList.contains('open');
+            subToggles.forEach(other => { const op = other.parentElement; if (op !== parent) { op.classList.remove('open'); other.setAttribute('aria-expanded', 'false'); } });
+            parent.classList.toggle('open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+    });
+}
+
+// ============ 从 JSON 加载 header 数据 ============
+(async function loadHeaderData() {
+    try {
+        const [announceData, catData] = await Promise.all([
+            window.DataStore.announcement(),
+            window.DataStore.categories()
+        ]);
+        // 公告栏文字（仅当文字超出容器时启用跑马灯）
+        const announceText = document.getElementById('announce-text');
+        const announceCopy = document.querySelector('.announce-text-copy');
+        if (announceText) announceText.textContent = announceData.text;
+        if (announceCopy) announceCopy.textContent = announceData.text;
+        // 智能跑马灯：仅当文字宽度大于容器时启用，速度约 60px/s
+        requestAnimationFrame(() => {
+            const scrollEl = document.querySelector('.announce-scroll');
+            const textEl = document.getElementById('announce-text');
+            if (scrollEl && textEl) {
+                const containerWidth = scrollEl.offsetWidth;
+                const textWidth = textEl.offsetWidth;
+                if (textWidth > containerWidth) {
+                    scrollEl.classList.add('marquee');
+                    const duration = Math.max(10, textWidth / 60);
+                    scrollEl.querySelectorAll('span').forEach(s => {
+                        s.style.animationDuration = duration + 's';
+                    });
+                } else {
+                    scrollEl.classList.remove('marquee');
+                }
+            }
+        });
+        // Products 子菜单（PC + 移动端）— 只显示一级分类，父分类链接展示所有子分类
+        const topCats = catData.items.filter(c => !c.parent);
+        const catLinks = topCats.map(cat =>
+            '<a href="/product-category/' + cat.slug + '/">' + cat.name + '</a>'
+        ).join('');
+        const pcSubmenu = document.getElementById('products-submenu');
+        const mSubmenu = document.getElementById('m-products-submenu');
+        if (pcSubmenu) pcSubmenu.innerHTML = '<a href="/shop/">All Products</a>' + catLinks;
+        if (mSubmenu) mSubmenu.innerHTML = '<a href="/shop/">All Products</a>' + catLinks;
+    } catch (e) {
+        console.error('Failed to load header data:', e);
+    }
+})();
+</script>

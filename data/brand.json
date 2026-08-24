@@ -1,0 +1,30 @@
+{
+  "eyebrow": "Our Story",
+  "title": "15 years of dedication to a purer world of water",
+  "lead": "Fish Keeper was founded in 2011 by a group of engineers who love aquatics. We believe every fish deserves gentle care, and every tank deserves devoted attention.",
+  "description": "From source sourcing to professional cold-chain delivery, from live health guarantees to one-on-one aquatic advisors — we redefine aquatic retail with expertise and warmth.",
+  "image": "images/brand.jpg",
+  "imageAlt": "Our aquarium showroom",
+  "badge": {
+    "value": "15+",
+    "label": "Years of\naquatic expertise"
+  },
+  "stats": [
+    {
+      "value": "2,800+",
+      "label": "Selected products"
+    },
+    {
+      "value": "120K+",
+      "label": "Served customers"
+    },
+    {
+      "value": "4.9★",
+      "label": "Average rating"
+    }
+  ],
+  "cta": {
+    "text": "Read Our Full Story",
+    "href": "about.html"
+  }
+}

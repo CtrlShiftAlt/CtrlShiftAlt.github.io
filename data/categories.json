@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "eyebrow": "Shop by Category",
+    "title": "Aquarium Equipment",
+    "subtitle": "Professional-grade aquarium hardware — filters, pumps, lighting, heating and more for a thriving tank"
+  },
+  "items": [
+    {
+      "name": "Cleaners",
+      "slug": "cleaners",
+      "parent": null,
+      "subtitle": "Glass · Gravel · Maintenance",
+      "description": "Everything for keeping your tank spotless — magnetic cleaners, gravel vacuums and more",
+      "image": "images/cat-cleaners.jpg",
+      "cta": "Shop Cleaners",
+      "large": true
+    },
+    {
+      "name": "Magnetic Glass Cleaner",
+      "slug": "magnetic-glass-cleaner",
+      "parent": "cleaners",
+      "subtitle": "Scrubbers · Brushes · Scrapers",
+      "description": "Effortless algae removal with strong magnetic cleaners that reach every corner",
+      "image": "images/cat-magnetic-glass-cleaner.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Gravel Cleaner Vacuum",
+      "slug": "gravel-cleaner-vacuum",
+      "parent": "cleaners",
+      "subtitle": "Siphons · Cleaners",
+      "description": "Quick water changes and substrate maintenance with powerful vacuum siphons",
+      "image": "images/cat-gravel-cleaner-vacuum.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Filters",
+      "slug": "filters",
+      "parent": null,
+      "subtitle": "Canister · Hang-on · Sponge",
+      "description": "Crystal-clear water with high-performance filtration systems",
+      "image": "images/cat-filters.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Air Pumps",
+      "slug": "air-pumps",
+      "parent": null,
+      "subtitle": "Pumps · Stones · Tubing",
+      "description": "Reliable oxygenation with quiet, energy-efficient air pumps",
+      "image": "images/cat-air-pumps.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Water Pumps",
+      "slug": "water-pumps",
+      "parent": null,
+      "subtitle": "Submersible · External",
+      "description": "Versatile water pumps for filtration, fountains and water circulation",
+      "image": "images/cat-water-pumps.jpg",
+      "cta": "Shop Now",
+      "large": true
+    },
+    {
+      "name": "Aquarium Wave Maker",
+      "slug": "aquarium-wave-maker",
+      "parent": null,
+      "subtitle": "Powerheads · Wavemakers",
+      "description": "Natural water flow and circulation for healthy coral and fish",
+      "image": "images/cat-wave-maker.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Lights",
+      "slug": "lights",
+      "parent": null,
+      "subtitle": "LED · T5 · Planted",
+      "description": "Full-spectrum lighting that brings out vibrant colors and plant growth",
+      "image": "images/cat-lights.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Fish Feeder",
+      "slug": "fish-feeder",
+      "parent": null,
+      "subtitle": "Automatic · Vacation",
+      "description": "Never miss a feeding with programmable automatic fish feeders",
+      "image": "images/cat-fish-feeder.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Aquarium Chiller",
+      "slug": "aquarium-chiller",
+      "parent": null,
+      "subtitle": "Chillers · Cooling Fans",
+      "description": "Keep water temperature stable even in warm climates with precision chillers",
+      "image": "images/cat-aquarium-chiller.jpg",
+      "cta": "Shop Now",
+      "large": true
+    },
+    {
+      "name": "Heaters",
+      "slug": "heaters",
+      "parent": null,
+      "subtitle": "Submersible · Inline · Digital",
+      "description": "Accurate, reliable heating to maintain optimal tank temperature",
+      "image": "images/cat-heaters.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Fish Tank",
+      "slug": "fish-tank",
+      "parent": null,
+      "subtitle": "Glass · Acrylic · Rimless",
+      "description": "Crystal-clear aquariums in every size, from nano to showpiece",
+      "image": "images/cat-fish-tank.jpg",
+      "cta": "Shop Now",
+      "large": false
+    },
+    {
+      "name": "Aquarium Stand",
+      "slug": "aquarium-stand",
+      "parent": null,
+      "subtitle": "Wood · Metal · Cabinets",
+      "description": "Sturdy, stylish stands that support your tank and hide equipment",
+      "image": "images/cat-aquarium-stand.jpg",
+      "cta": "Shop Now",
+      "large": false
+    }
+  ]
+}
